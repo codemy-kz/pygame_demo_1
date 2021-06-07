@@ -11,6 +11,8 @@ pygame.display.set_caption("Pygame Sprite Demo App")
 fig_surf = pygame.image.load("images/ball_bear.png").convert_alpha()
 fig_pos = fig_surf.get_rect(center = (SCREEN_WIDTH//2, 0))
 
+bg_surf = pygame.image.load("images/back1.jpg").convert()
+
 speed = 1
 FPS = 60
 clock = pygame.time.Clock()
@@ -27,7 +29,7 @@ while flRunning:
     else:
         fig_pos.y = 0
     
-    screen.fill(BLACK)
+    screen.blit(bg_surf, (0,0))
     screen.blit(fig_surf, fig_pos)
 
     pygame.display.update()
