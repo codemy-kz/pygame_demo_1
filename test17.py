@@ -19,10 +19,15 @@ class Ball(pygame.sprite.Sprite):
             self.kill()
 
 
-
+pygame.mixer.pre_init(44100, -16, 1, 512)
 pygame.init()
 
 pygame.time.set_timer(pygame.USEREVENT, 2000)
+
+pygame.mixer.music.load('sounds/bird.mp3')
+pygame.mixer.music.play(-1)
+
+s_catch = pygame.mixer.Sound('sounds/catch.ogg')
 
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("Sprite collide Demo")
@@ -65,6 +70,7 @@ def ball_collide():
     global game_score
     for ball in balls:
         if telega_pos.collidepoint(ball.rect.center):
+            s_catch.play()
             game_score += ball.score
             ball.kill()
 
