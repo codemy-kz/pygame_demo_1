@@ -10,9 +10,11 @@ pygame.display.set_caption("Pygame Sprite Demo App")
 
 bg_surf = pygame.image.load("images/back1.jpg").convert()
 
-f1 = Figure("images/ball_bear.png",  SCREEN_WIDTH//2, 1)
-f2 = Figure("images/ball_fox.png",  SCREEN_WIDTH//2 - 250, 3)
-f3 = Figure("images/ball_panda.png",  SCREEN_WIDTH//2 + 150, 2)
+figures = pygame.sprite.Group()
+
+figures.add(Figure("images/ball_bear.png",  SCREEN_WIDTH//2, 1))
+figures.add(Figure("images/ball_fox.png",  SCREEN_WIDTH//2 - 250, 3),
+    Figure("images/ball_panda.png",  SCREEN_WIDTH//2 + 150, 2))
 
 FPS = 60
 clock = pygame.time.Clock()
@@ -26,14 +28,10 @@ while flRunning:
 
     
     screen.blit(bg_surf, (0,0))
-    screen.blit(f1.image, f1.rect)
-    screen.blit(f2.image, f2.rect)
-    screen.blit(f3.image, f3.rect)
-
-    f1.update(SCREEN_HEIGHT)
-    f2.update(SCREEN_HEIGHT)
-    f3.update(SCREEN_HEIGHT)
-
+  
+    figures.draw(screen)
+    figures.update(SCREEN_HEIGHT)
+    
     pygame.display.update()
 
     clock.tick(FPS)
