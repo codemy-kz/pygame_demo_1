@@ -1,6 +1,6 @@
 import pygame
+from figure import Figure
 
-BLACK = (0, 0, 0)
 SCREEN_WIDTH = 1380
 SCREEN_HEIGHT = 580
 
@@ -8,12 +8,10 @@ pygame.init()
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("Pygame Sprite Demo App")
 
-fig_surf = pygame.image.load("images/ball_bear.png").convert_alpha()
-fig_pos = fig_surf.get_rect(center = (SCREEN_WIDTH//2, 0))
-
 bg_surf = pygame.image.load("images/back1.jpg").convert()
 
-speed = 1
+f1 = Figure("images/ball_bear.png", SCREEN_WIDTH//2, 1)
+
 FPS = 60
 clock = pygame.time.Clock()
 flRunning = True
@@ -24,14 +22,12 @@ while flRunning:
             flRunning = False
             pygame.quit()
 
-    if fig_pos.y < SCREEN_HEIGHT-20:
-        fig_pos.y += speed
-    else:
-        fig_pos.y = 0
     
     screen.blit(bg_surf, (0,0))
-    screen.blit(fig_surf, fig_pos)
+    screen.blit(f1.image, f1.rect)
 
+    f1.update(SCREEN_HEIGHT)
+    
     pygame.display.update()
 
     clock.tick(FPS)
