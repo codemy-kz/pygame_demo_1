@@ -14,8 +14,11 @@ bg_surf = pygame.image.load("images/back1.jpg").convert()
 
 figures = pygame.sprite.Group()
 
-fig_images = ['ball_bear.png', 'ball_fox.png', 'ball_panda.png', 'ball_lemur.png',
-            'ball_tiger.png', 'ball_puppy.png', 'ball_kitten.png']
+fig_images = [
+    'ball_bear.png', 'ball_fox.png', 'ball_panda.png', 'ball_lemur.png',
+    'ball_tiger.png', 'ball_puppy.png', 'ball_kitten.png', 'ball_hed.png',
+    'ball_lion.png', 'ball_owl.png', 'ball_pantera.png', 'ball_rabbit.png',
+    'ball_sn_lpd.png', 'ball_squ.png']
 fig_surf = [pygame.image.load('images/' + image) for image in fig_images]
 
 def create_figure(group):
@@ -23,7 +26,8 @@ def create_figure(group):
     figure = fig_surf[index]
     speed = random.randint(1, 4)
     from_x = random.randint(30, SCREEN_WIDTH-30)
-    return Figure(figure, from_x, speed, group)
+    
+    group.add(Figure(figure, from_x, speed))
 
 FPS = 60
 clock = pygame.time.Clock()
